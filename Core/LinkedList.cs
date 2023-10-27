@@ -23,11 +23,13 @@ namespace Algo_Laba3
             }
             Length++;
         }
-
-        public T? Get(int index)
+        
+        public T this[int index]
         {
-            return getNode(index).Value;
+            get => getNode(index).Value;
+            set => getNode(index).Value = value;
         }
+
 
         public void Remove(int index)
         {
