@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Algo_Laba3
+namespace Core
 {
     public class LinkedList<T> : IEnumerable<T>
     {
@@ -37,7 +37,9 @@ namespace Algo_Laba3
             Length--;
             if (item.Prev == null)
             {
+
                 head = item.Next;
+                item.Next.Prev = null;
                 return;
             }
             if(item.Next == null)
