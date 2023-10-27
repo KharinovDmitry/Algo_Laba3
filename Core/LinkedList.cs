@@ -37,6 +37,7 @@ namespace Core
             Length--;
             if (item.Prev == null)
             {
+                item.Next.Prev = null;
                 head = item.Next;
                 return;
             }
