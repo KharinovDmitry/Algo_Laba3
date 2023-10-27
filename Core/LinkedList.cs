@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Algo_Laba3
+namespace Core
 {
     public class LinkedList<T> : IEnumerable<T>
     {
