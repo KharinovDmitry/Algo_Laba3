@@ -1,37 +1,38 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Core
 {
-    public class Queue<T> : IEnumerable<T>
+    public class QueueAlias<T> : IEnumerable<T>, IQueue<T>
     {
-        private LinkedList<T> list = new LinkedList<T>();
+        private System.Collections.Generic.Queue<T> queue = new System.Collections.Generic.Queue<T>();
 
-        public uint Length => list.Length;
-        public bool isEmpty => list.Length == 0;
+        public int Length => queue.Count;
+        public bool isEmpty() => Length == 0;
 
-
-        public void Enqueue(T item) 
+        public T GetHead()
         {
-            list.Add(item);
+            return queue.First();
+        }
+
+        public void Enqueue(T item)
+        {
+            queue.Enqueue(item);
         }
 
         public T Dequeue()
         {
-            var res = list[0];
-            list.Remove(0);
-            return res;
+            return queue.Dequeue();
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var item in list)
+            foreach (var item in queue)
             {
                 sb.Append(item).Append(" ");
             }
@@ -40,12 +41,17 @@ namespace Core
 
         public IEnumerator<T> GetEnumerator()
         {
-            return list.GetEnumerator();
+            return queue.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public void Clear()
+        {
+            queue.Clear();
         }
     }
 }

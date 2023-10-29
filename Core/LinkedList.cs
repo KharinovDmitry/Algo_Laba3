@@ -39,7 +39,10 @@ namespace Core
             {
 
                 head = item.Next;
-                item.Next.Prev = null;
+                if(item.Next != null)
+                {
+                    item.Next.Prev = null;
+                }
                 return;
             }
             if(item.Next == null)
@@ -49,6 +52,12 @@ namespace Core
                 return;
             }
             item.Prev.Next = item.Next;
+        }
+
+        public void Clear()
+        {
+            head = null;
+            Length = 0;
         }
         
         private Node<T> getNode(int index)
