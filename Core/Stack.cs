@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Core
 {
-    public class Stack<T>
+    public class Stack<T> : IEnumerable<T>
     {
         private LinkedList<T> _list = new LinkedList<T>();
 
@@ -15,7 +15,15 @@ namespace Core
         {
             _list.Add(element);
         }
+        public int Count()
+        {
+            return (int) _list.Length;
+        }
 
+        public T Peek()
+        {
+            return _list[(int)_list.Length - 1];
+        }
         public object Pop()
         {
             T data = _list[(int)_list.Length - 1];
@@ -36,6 +44,15 @@ namespace Core
                 column = _list[i] + "\n" + column;
             }
             Console.WriteLine(column);
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

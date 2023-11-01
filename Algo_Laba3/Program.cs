@@ -8,6 +8,7 @@ namespace Algo_Laba3
 {
     internal class Program
     {
+        public static string ReadFile(string fileName) => File.ReadAllText($"..\\..\\..\\..\\{fileName}");
         public static void Main(string[] args)
         {
             //EvaluateQueue();
@@ -19,6 +20,16 @@ namespace Algo_Laba3
                 CommandExecutor.Execute(Console.ReadLine(), queue);
                 Console.ReadKey();
             }
+            /* Для калькулятора:
+            var inputFileLine = ReadFile("inputForCalc.txt");
+            List<string> operation = inputFileLine.Split(" ").ToList().Where(x => !x.Equals(string.Empty)).ToList();
+            double result = Calc.CalculateRPN(operation);
+            Console.WriteLine(result);
+            
+            Для стека:
+            var inputFileLine = ReadFile("inputForStack.txt");
+            CommandOperationStack.DoOperation(inputFileLine);
+            */
         }
 
         public static void EvaluateQueue()
