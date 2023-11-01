@@ -4,22 +4,22 @@ namespace Core
 {
     public class LinkedList<T> : IEnumerable<T>
     {
-        private Node<T>? head;
-        private Node<T>? tail;
+        public Node<T>? Head { get; set; }
+        public Node<T>? Tail { get; set; }
 
         public uint Length { get; private set; } = 0;
 
         public void Add(T item)
         {
-            if (head == null)
+            if (Head == null)
             {
-                tail = head = new Node<T>(item, null, null);
+                Tail = Head = new Node<T>(item, null, null);
             }
             else
             {
-                var newNode = new Node<T>(item, tail, null);
-                tail.Next = newNode;
-                tail = newNode;
+                var newNode = new Node<T>(item, Tail, null);
+                Tail.Next = newNode;
+                Tail = newNode;
             }
             Length++;
         }
@@ -38,7 +38,7 @@ namespace Core
             if (item.Prev == null)
             {
 
-                head = item.Next;
+                Head = item.Next;
                 if(item.Next != null)
                 {
                     item.Next.Prev = null;
@@ -48,7 +48,7 @@ namespace Core
             if(item.Next == null)
             {
                 item.Prev.Next = null;
-                tail = item.Prev;
+                Tail = item.Prev;
                 return;
             }
             item.Prev.Next = item.Next;
@@ -56,7 +56,7 @@ namespace Core
 
         public void Clear()
         {
-            head = null;
+            Head = null;
             Length = 0;
         }
         
@@ -68,7 +68,7 @@ namespace Core
             Node<T> res;
             if(index == 0 || Length / index >= 2)
             {
-                res = head;
+                res = Head;
                 for (int i = 0; i < index; i++)
                 {
                     res = res.Next;
@@ -76,7 +76,7 @@ namespace Core
                 return res;
             }
 
-            res = tail;
+            res = Tail;
             for (int i = 0; i < Length - index - 1; i++)
             {
                 res = res.Prev;
@@ -87,7 +87,7 @@ namespace Core
 
         public IEnumerator<T> GetEnumerator()
         {
-            var current = head;
+            var current = Head;
             while (current != null)
             {
                 yield return current.Value;
@@ -100,7 +100,8 @@ namespace Core
             return GetEnumerator();
         }
     }
-    internal class Node<T>
+
+    public class Node<T>
     {
         public Node<T>? Prev;
         public Node<T>? Next;
