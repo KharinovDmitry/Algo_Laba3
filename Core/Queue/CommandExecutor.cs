@@ -10,7 +10,7 @@ namespace Core
     {
         public static void Execute(string input, IQueue<int> queue)
         {
-            string[] commands = input.Split(" ");
+            string[] commands = input.Trim().Split(" ");
             foreach (string command in commands)
             {
                 switch (command[0]) 
@@ -33,7 +33,7 @@ namespace Core
                     case '3':
                         if (queue.isEmpty())
                         {
-                            Console.WriteLine("is empty");
+                            Console.WriteLine("Is empty");
                         }
                         else
                         {
