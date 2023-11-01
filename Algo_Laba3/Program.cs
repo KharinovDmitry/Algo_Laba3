@@ -11,9 +11,14 @@ namespace Algo_Laba3
         public static void Main(string[] args)
         {
             //EvaluateQueue();
-            Core.Queue<int> queue = new Core.Queue<int>();
-            CommandExecutor.Execute(Console.ReadLine(), queue);
-            Console.ReadKey();
+            while(true)
+            {
+                Console.Clear();    
+                Core.Queue<int> queue = new Core.Queue<int>();
+                Console.WriteLine("Введите команды");
+                CommandExecutor.Execute(Console.ReadLine(), queue);
+                Console.ReadKey();
+            }
         }
 
         public static void EvaluateQueue()
